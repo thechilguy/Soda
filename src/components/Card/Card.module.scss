@@ -1,0 +1,38 @@
+.card {
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.content {
+  text-align: center;
+}
+
+.inactive {
+  background-color: white;
+  color: black;
+}
+
+.greenCard {
+  background-color: #6fcf97;
+  color: white;
+}
+
+.berryCard {
+  background-color: #bb6bd9;
+  color: white;
+}
+
+.orangeCard {
+  background-color: #f2994a;
+  color: white;
+}
+
+.strawberryCard {
+  background-color: #eb5757;
+  color: white;
+}
