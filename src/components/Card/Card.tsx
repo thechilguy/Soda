@@ -9,7 +9,8 @@ interface CardProps {
   isExpanded: boolean;
   onClick: () => void;
   onExpand: () => void;
-  disabled: boolean; // нове
+  onCollapse?: () => void;
+  disabled: boolean;
 }
 
 export default function Card({
@@ -19,6 +20,7 @@ export default function Card({
   isExpanded,
   onClick,
   onExpand,
+  onCollapse,
   disabled,
 }: CardProps) {
   const cardClass = classNames(
@@ -36,18 +38,30 @@ export default function Card({
     <div className={cardClass} onClick={onClick}>
       <div className={styles.content}>
         <h3>{name}</h3>
-        <button
-          disabled={disabled}
-          className={classNames(styles.button, {
-            [styles.disabledBtn]: disabled,
-          })}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!disabled) onExpand();
-          }}
-        >
-          View more →
-        </button>
+        {isExpanded ? (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onCollapse?.();
+            }}
+            className={styles.button}
+          >
+            ← Back
+          </button>
+        ) : (
+          <button
+            disabled={disabled}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (!disabled) onExpand();
+            }}
+            className={classNames(styles.button, {
+              [styles.disabledBtn]: disabled,
+            })}
+          >
+            View more →
+          </button>
+        )}
       </div>
     </div>
   );

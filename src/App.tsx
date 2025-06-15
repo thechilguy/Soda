@@ -18,6 +18,10 @@ function App() {
     setActiveCardId(id);
     setIsExpanded(true);
   };
+  const handleCollapse = () => {
+    setIsExpanded(false);
+    setActiveCardId(null);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -33,6 +37,7 @@ function App() {
             onClick={() => setActiveCardId(drink.id)}
             onExpand={() => handleExpand(drink.id)}
             disabled={activeCardId !== drink.id}
+            onCollapse={handleCollapse}
           />
         ))}
       </div>
