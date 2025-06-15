@@ -21,12 +21,16 @@ export default function Card({
   onExpand,
   disabled,
 }: CardProps) {
-  const cardClass = classNames(styles.card, {
-    [styles[variant]]: isActive && !isExpanded,
-    [styles.expanded]: isActive && isExpanded,
-    [styles.inactive]: !isActive && isExpanded,
-    [styles.default]: !isExpanded, // початковий стан
-  });
+  const cardClass = classNames(
+    styles.card,
+    {
+      [styles.default]: !isActive && !isExpanded,
+      [styles.active]: isActive && !isExpanded,
+      [styles.expanded]: isActive && isExpanded,
+      [styles.inactive]: !isActive && isExpanded,
+    },
+    styles[variant] // <-- завжди додається, але стилі кольору керуються через parent-класи
+  );
 
   return (
     <div className={cardClass} onClick={onClick}>
