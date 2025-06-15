@@ -6,20 +6,44 @@ interface CardProps {
   id: number;
   variant: string;
   isActive: boolean;
+  isExpanded: boolean;
   onClick: () => void;
+  onExpand: () => void;
+  disabled: boolean; // нове
 }
 
-export default function Card({ name, variant, isActive, onClick }: CardProps) {
-  const cardClass = classNames(
-    styles.card,
-    isActive ? styles[variant] : styles.inactive
-  );
+export default function Card({
+  name,
+  variant,
+  isActive,
+  isExpanded,
+  onClick,
+  onExpand,
+  disabled,
+}: CardProps) {
+  const cardClass = classNames(styles.card, {
+    [styles[variant]]: isActive && !isExpanded,
+    [styles.expanded]: isActive && isExpanded,
+    [styles.inactive]: !isActive && isExpanded,
+    [styles.default]: !isExpanded, // початковий стан
+  });
 
   return (
     <div className={cardClass} onClick={onClick}>
       <div className={styles.content}>
         <h3>{name}</h3>
-        <button>View more →</button>
+        <button
+          disabled={disabled}
+          className={classNames(styles.button, {
+            [styles.disabledBtn]: disabled,
+          })}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (!disabled) onExpand();
+          }}
+        >
+          View more →
+        </button>
       </div>
     </div>
   );

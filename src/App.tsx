@@ -12,6 +12,13 @@ const drinks = [
 function App() {
   const [activeCardId, setActiveCardId] = useState<number | null>(null);
 
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleExpand = (id: number) => {
+    setActiveCardId(id);
+    setIsExpanded(true);
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.cardContainer}>
@@ -22,7 +29,10 @@ function App() {
             name={drink.name}
             variant={drink.variant}
             isActive={activeCardId === drink.id}
+            isExpanded={isExpanded}
             onClick={() => setActiveCardId(drink.id)}
+            onExpand={() => handleExpand(drink.id)}
+            disabled={activeCardId !== drink.id}
           />
         ))}
       </div>
