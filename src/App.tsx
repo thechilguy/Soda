@@ -1,12 +1,40 @@
 import { useState } from "react";
 import styles from "./App.module.scss";
 import Card from "./components/Card/Card";
+import btlOrange from "./assets/btl_orange.png";
+import btlGreen from "./assets/btl_green.png";
+import btlBerry from "./assets/btl_burry.png";
+import btlStr from "./assets/btl_str.png";
 
 const drinks = [
-  { id: 1, name: "green", variant: "greenCard" },
-  { id: 2, name: "berry", variant: "berryCard" },
-  { id: 3, name: "orange", variant: "orangeCard" },
-  { id: 4, name: "strawberry", variant: "strawberryCard" },
+  {
+    id: 1,
+    name: "green",
+    variant: "greenCard",
+    image: btlGreen,
+    label: "Green Energetic",
+  },
+  {
+    id: 2,
+    name: "berry",
+    variant: "berryCard",
+    image: btlBerry,
+    label: "Berry Energetic",
+  },
+  {
+    id: 3,
+    name: "orange",
+    variant: "orangeCard",
+    image: btlOrange,
+    label: "Orange Energetic",
+  },
+  {
+    id: 4,
+    name: "strawberry",
+    variant: "strawberryCard",
+    image: btlStr,
+    label: "Strawberry Energetic",
+  },
 ];
 
 function App() {
@@ -31,6 +59,8 @@ function App() {
             key={drink.id}
             id={drink.id}
             name={drink.name}
+            image={drink.image}
+            label={drink.label}
             variant={drink.variant}
             isActive={activeCardId === drink.id}
             isExpanded={isExpanded}

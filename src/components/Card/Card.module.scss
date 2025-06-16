@@ -1,7 +1,11 @@
+.main {
+  padding: 10px;
+}
 .card {
   flex-shrink: 0;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   transition: background-color 0.6s ease, flex-basis 1s ease, opacity 0.8s ease;
@@ -9,41 +13,34 @@
   flex-basis: 25%;
 }
 
+/* ───── VARIANTS ───── */
 .default {
   background-color: white;
   color: black;
 }
 
-.active.greenCard {
-  background-color: #6fcf97;
-  color: white;
-}
-.active.berryCard {
-  background-color: #bb6bd9;
-  color: white;
-}
-.active.orangeCard {
-  background-color: #f2994a;
-  color: white;
-}
-.active.strawberryCard {
-  background-color: #eb5757;
-  color: white;
-}
-
+.active.greenCard,
 .expanded.greenCard {
   background-color: #6fcf97;
+  color: white;
 }
+.active.berryCard,
 .expanded.berryCard {
   background-color: #bb6bd9;
+  color: white;
 }
+.active.orangeCard,
 .expanded.orangeCard {
   background-color: #f2994a;
+  color: white;
 }
+.active.strawberryCard,
 .expanded.strawberryCard {
   background-color: #eb5757;
+  color: white;
 }
 
+/* ───── STATES ───── */
 .expanded {
   flex-basis: 100vw;
   z-index: 10;
@@ -55,24 +52,166 @@
   pointer-events: none;
 }
 
+/* ───── BUTTON ───── */
 .button {
-  background-color: white;
-  color: black;
-  border: none;
-  padding: 10px 20px;
+  border: 1px solid white;
+  color: white;
+  background: transparent;
+  padding: 18px 30px;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 300;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .button:hover {
-  background-color: #f2f2f2;
+  background-color: #c9c9c95e;
 }
-
 .disabledBtn {
-  background-color: #cccccc;
   color: #777;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.price {
+  font-size: 5rem;
+  font-weight: bold;
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  white-space: nowrap;
+}
+
+/* ───── CONTENT ───── */
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content img {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  z-index: 10;
+  width: 0;
+  opacity: 0;
+  transform: translateY(-40px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.content .discription .price {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.active .content img,
+.expanded .content img {
+  width: 320px;
+  opacity: 1;
+  transform: translateY(0);
+  animation: bounceDown 0.6s ease;
+}
+.expanded .content img {
+  width: 420px;
+  top: -150px;
+  right: -40px;
+  transform: translateY(0) scale(1.2);
+  transition: opacity 0.5s ease, transform 0.6s ease, width 0.6s ease;
+}
+
+@keyframes bounceDown {
+  0% {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  40% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ───── DESCRIPTION ───── */
+.discription {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.discription h1 {
+  font-size: 4rem;
+  margin: 0;
+  width: 100%;
+}
+
+.discription .text,
+.discription .price,
+.discription p {
+  visibility: hidden;
+}
+
+.expanded .discription {
+  align-items: flex-start;
+  width: 100%;
+}
+.expanded .discription h1 {
+  width: 400px;
+}
+
+.expanded .discription .text,
+.expanded .discription .price,
+.expanded .discription p {
+  visibility: visible;
+  width: 400px;
+}
+
+.expanded .discription .price {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.expanded .price {
+  opacity: 1;
+  transform: translateY(0);
+  height: auto;
+  font-size: 5rem;
+}
+
+.expanded .conteiner {
+  display: flex;
+  flex-direction: row;
+}
+.expanded .content {
+  width: 1200px;
+}
+.conteiner {
+  display: flex;
+  justify-content: start;
+
+  width: 100%;
+  max-width: 1600px;
+}
+
+.blockImage {
+  position: relative;
+}
+.whiteDot {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  z-index: 1;
+  width: 500px;
+  height: 500px;
+  background-color: rgba($color: #ffffff56, $alpha: 0.1);
+  border-radius: 50%;
 }
