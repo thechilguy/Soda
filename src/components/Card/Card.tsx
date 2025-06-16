@@ -9,9 +9,10 @@ interface CardProps {
   variant: string;
   isActive: boolean;
   isExpanded: boolean;
-  onClick: () => void;
   onExpand: () => void;
   onCollapse?: () => void;
+  onHover: () => void;
+  onLeave: () => void;
   disabled: boolean;
 }
 
@@ -22,15 +23,15 @@ export default function Card({
   isActive,
   isExpanded,
   label,
-  onClick,
   onExpand,
   onCollapse,
+  onHover,
+  onLeave,
   disabled,
 }: CardProps) {
   const cardClass = classNames(
     styles.card,
     {
-      [styles.default]: !isActive && !isExpanded,
       [styles.active]: isActive && !isExpanded,
       [styles.expanded]: isActive && isExpanded,
       [styles.inactive]: !isActive && isExpanded,
@@ -39,7 +40,7 @@ export default function Card({
   );
 
   return (
-    <div className={cardClass} onClick={onClick}>
+    <div className={cardClass} onMouseEnter={onHover} onMouseLeave={onLeave}>
       <div className={styles.main}>
         <div className={styles.content}>
           <div className={styles.blockImage}>
@@ -52,11 +53,7 @@ export default function Card({
               <h1>{label}</h1>
               <div className={styles.text}>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Mollitia delectus, facere officiis excepturi totam nisi
-                  perferendis modi numquam saepe quas voluptas adipisci
-                  reprehenderit distinctio ratione dolore, officia voluptate
-                  voluptates magni!
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit...
                 </p>
               </div>
             </div>
@@ -64,6 +61,7 @@ export default function Card({
             <div className={styles.price}>79$</div>
           </div>
         </div>
+
         {isExpanded ? (
           <button
             onClick={(e) => {

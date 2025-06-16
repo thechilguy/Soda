@@ -37,18 +37,30 @@ const drinks = [
   },
 ];
 
-function App() {
+export default function App() {
   const [activeCardId, setActiveCardId] = useState<number | null>(null);
-
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleExpand = (id: number) => {
     setActiveCardId(id);
     setIsExpanded(true);
   };
+
   const handleCollapse = () => {
     setIsExpanded(false);
     setActiveCardId(null);
+  };
+
+  const handleHover = (id: number) => {
+    if (!isExpanded) {
+      setActiveCardId(id);
+    }
+  };
+
+  const handleLeave = () => {
+    if (!isExpanded) {
+      setActiveCardId(null);
+    }
   };
 
   return (
@@ -64,15 +76,14 @@ function App() {
             variant={drink.variant}
             isActive={activeCardId === drink.id}
             isExpanded={isExpanded}
-            onClick={() => setActiveCardId(drink.id)}
             onExpand={() => handleExpand(drink.id)}
-            disabled={activeCardId !== drink.id}
             onCollapse={handleCollapse}
+            onHover={() => handleHover(drink.id)}
+            onLeave={handleLeave}
+            disabled={isExpanded && activeCardId !== drink.id}
           />
         ))}
       </div>
     </div>
   );
 }
-
-export default App;
