@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import styles from "./Card.module.scss";
+import styles from "../../App.module.scss";
 
 interface CardProps {
   name: string;
