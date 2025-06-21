@@ -13,8 +13,6 @@
   flex-basis: 25%;
 }
 
-/* ───── VARIANTS ───── */
-
 .greenCard,
 .expanded.greenCard {
   background-color: #6fcf97;
@@ -36,7 +34,6 @@
   color: white;
 }
 
-/* ───── STATES ───── */
 .expanded {
   flex-basis: 100vw;
   z-index: 10;
@@ -48,7 +45,6 @@
   pointer-events: none;
 }
 
-/* ───── BUTTON ───── */
 .button {
   border: 1px solid white;
   color: white;
@@ -78,7 +74,6 @@
   white-space: nowrap;
 }
 
-/* ───── CONTENT ───── */
 .content {
   display: flex;
   flex-direction: column;
@@ -140,7 +135,6 @@
   }
 }
 
-/* ───── DESCRIPTION ───── */
 .discription {
   display: flex;
   flex-direction: column;
